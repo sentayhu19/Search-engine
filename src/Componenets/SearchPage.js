@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import getSearchResults from './redux/search/search'
+import { getSearchResults } from './redux/search/Api';
 const  SearchPage = () => {
     const dispatch = useDispatch();
     useEffect(() => {
