@@ -2,12 +2,11 @@ import { Search, SearchError } from "./action";
 import axios from 'axios'
 
 
-export const getSearchResults = () => (dispatch) => {
-  console.log("SEARCN STARTED ------------------ ");
+export const getSearchResults = (key) => (dispatch) => {
     const options = {
       method: 'GET',
       url: 'https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/Search/WebSearchAPI',
-      params: {q: 'taylor swift', pageNumber: '1', pageSize: '10', autoCorrect: 'true'},
+      params: {q: key, pageNumber: '1', pageSize: '10', autoCorrect: 'true'},
       headers: {
         'X-RapidAPI-Key': '0a632a57aamsh1f8242879ce4ecfp1a7230jsnfa28d8ec3311',
         'X-RapidAPI-Host': 'contextualwebsearch-websearch-v1.p.rapidapi.com'
