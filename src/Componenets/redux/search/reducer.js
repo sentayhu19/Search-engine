@@ -2,7 +2,8 @@ import { SEARCH, SEARCHERROR } from "./type";
 
 const initState = {
 searchResults: [],
-Savedkey: ''
+Savedkey: '',
+searcherror: 0,
 };
 
 const searchReducer = (state = initState, action) => {
@@ -13,6 +14,10 @@ const searchReducer = (state = initState, action) => {
                 searchResults: action.payload,
                 Savedkey: action.key,
             };
+        case SEARCHERROR:
+            return {
+                searcherror: 1,
+            }
         default:
             return state;
     }
