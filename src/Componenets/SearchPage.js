@@ -2,6 +2,7 @@ import React, { useEffect,useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getSearchResults } from './redux/search/Api';
 import searchIcn from '../assets/images/search-icn.gif'
+import { useNavigate } from 'react-router-dom';
 const  SearchPage = () => {
   const [key, setKey] = useState(null);
     const dispatch = useDispatch();
@@ -12,10 +13,11 @@ const  SearchPage = () => {
     const { value } = e.target;
     setKey(value);
        }
+       const navigate = useNavigate();
    const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("SEND KEY: ", key)
     dispatch(getSearchResults(key));
+    navigate('/searchresults');
   }
   return (
     <div className='w-full flex flex-col  mt-40  justify-center'>

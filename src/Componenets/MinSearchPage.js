@@ -1,0 +1,34 @@
+import React, { useEffect,useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { getSearchResults } from './redux/search/Api';
+import { useNavigate } from 'react-router-dom';
+
+const  MinSearchPage = () => {
+    const [key, setKey] = useState(null);
+      const dispatch = useDispatch();
+      useEffect(() => {
+         dispatch(getSearchResults());
+      }, [])
+    const handleOnChange = (e) => {
+      const { value } = e.target;
+      setKey(value);
+         }
+         const navigate = useNavigate();
+     const handleSubmit = (e) => {
+      e.preventDefault();
+      dispatch(getSearchResults(key));
+      navigate('/searchresults');
+    }
+    return (
+      <div className='w-full flex'>
+         
+          <form className='flex gap-10 justify-center text-center' onSubmit={handleSubmit}>
+          <h4 className='text-yellow-700 m-auto text-4xl'>Arada Search</h4>
+          <input text="text" name="key" value={key} onChange={handleOnChange} className='border-double border-4 border-sky-500 rounded-lg w-80 h-12 m-auto' placeholder="Search" />
+          <button type='submit' className='hover:bg-indigo-600 hover:text-white border-solid border-2 border-sky-500 button mt-5 m-auto w-40'>Search</button>
+          </form>
+  
+      </div>
+    )
+  }
+  export default MinSearchPage;

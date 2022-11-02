@@ -7,7 +7,10 @@ searchResults: []
 const searchReducer = (state = initState, action) => {
     switch (action.type) {
         case SEARCH:
-            return action.payload;
+            console.log("Search reducer", action.payload);
+            return { 
+                searchResults: action.payload
+            };
         default:
             return state;
     }
