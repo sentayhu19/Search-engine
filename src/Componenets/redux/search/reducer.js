@@ -1,7 +1,8 @@
 import { SEARCH, SEARCHERROR } from "./type";
 
 const initState = {
-searchResults: []
+searchResults: [],
+Savedkey: ''
 };
 
 const searchReducer = (state = initState, action) => {
@@ -9,7 +10,8 @@ const searchReducer = (state = initState, action) => {
         case SEARCH:
             console.log("Search reducer", action.payload);
             return { 
-                searchResults: action.payload
+                searchResults: action.payload,
+                Savedkey: action.key,
             };
         default:
             return state;

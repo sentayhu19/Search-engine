@@ -5,12 +5,12 @@ import { alphanumeric } from 'randomized-string/lib/types';
 import Organic from './Organic';
 import MinSearchPage from './MinSearchPage';
 const  SearchResults = () => {
-  const { searchResults } = useSelector(state => state.searchReducer);
+  const { searchResults, key } = useSelector(state => state.searchReducer);
   console.log("Get at resul",searchResults);
   return (
     <div className='flex flex-col'>
       <MinSearchPage/>
-      <h1>SEARCH RESULTS: </h1>
+      <h1 className='text-center'>Search Results: </h1>
          {Object.keys(searchResults.organic).map((results) => (
            <Organic
            key={generate({ charset: alphanumeric, length: 32 })}

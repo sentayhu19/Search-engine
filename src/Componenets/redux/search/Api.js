@@ -1,6 +1,5 @@
 import { Search, SearchError } from "./action";
 import axios from 'axios'
-require("dotenv").config();
 
 export const getSearchResults =  (key) => async (dispatch) => {
   if (key!=="" && key!==undefined) {
@@ -16,7 +15,7 @@ export const getSearchResults =  (key) => async (dispatch) => {
   //   method: 'post',
   //   url: 'https://google.serper.dev/search',
   //   headers: { 
-  //     'X-API-KEY': process.env.API_KEY, 
+  //     'X-API-KEY': APIKEY, 
   //     'Content-Type': 'application/json'
   //   },
   //   data : data
@@ -200,5 +199,5 @@ const response ={
     }
   ]
 }
-dispatch(Search(response))
+dispatch(Search(response, key))
 }
