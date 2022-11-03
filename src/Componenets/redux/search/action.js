@@ -1,4 +1,4 @@
-import { SEARCH, SEARCHERROR } from "./type";
+import { SEARCH, SEARCHERROR, SEARCHLOADING } from "./type";
 
 export const Search = (payload, key) => ({
     type: SEARCH,
@@ -9,4 +9,8 @@ export const Search = (payload, key) => ({
 export const SearchError = (payload) => ({
 type: SEARCHERROR,
 payload,
+})
+
+export const SearchLoading = () => ({
+type: SEARCHLOADING,
 })

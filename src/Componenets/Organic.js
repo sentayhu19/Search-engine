@@ -7,7 +7,6 @@ export default function Organic({ ID, results }) {
         title, link, snippet, imageUrl
 
       } = results;
-    console.log("Get at resul ORGANIC", results);
   return (
     <div className='w-3/5 m-auto'>
         <div className='flex justify-between'>

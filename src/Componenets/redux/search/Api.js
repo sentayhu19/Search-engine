@@ -3,7 +3,6 @@ import axios from 'axios'
 
 export const getSearchResults =  (key) => async (dispatch) => {
   if (key!=="" && key!==undefined) {
-    console.log("SEARCH started", key)
   let data = JSON.stringify({
     "q": key,
     "gl": "us",
@@ -15,7 +14,7 @@ export const getSearchResults =  (key) => async (dispatch) => {
     method: 'post',
     url: 'https://google.serper.dev/search',
     headers: { 
-      'X-API-KEY': "API", 
+      'X-API-KEY': "API KEY", 
       'Content-Type': 'application/json'
     },
     data : data
@@ -23,7 +22,8 @@ export const getSearchResults =  (key) => async (dispatch) => {
   
   await axios(config)
   .then((response) => {
-    dispatch(Search(response.data))
+    console.log("SERVER response", response.data);
+    dispatch(Search(response.data, key))
   })
   .catch((error) => {
     SearchError(error);
