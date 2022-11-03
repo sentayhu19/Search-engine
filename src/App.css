@@ -3,3 +3,9 @@
 .related{
     cursor: pointer;
 }
+
+.logo-font{
+    font-family: 'Inter', sans-serif;
+    font-family: 'Libre Bodoni', serif;
+    font-family: 'Permanent Marker', cursive;
+}
