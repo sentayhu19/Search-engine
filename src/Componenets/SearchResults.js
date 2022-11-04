@@ -1,30 +1,44 @@
 import React, { useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector,useDispatch } from 'react-redux'
 import { generate } from 'randomized-string';
 import { alphanumeric } from 'randomized-string/lib/types';
 import Organic from './Organic';
 import MinSearchPage from './MinSearchPage';
 import Related from './Related';
 import loadinganim from '../assets/images/loading.gif';
-import { useNavigate } from 'react-router-dom';
+import { Search } from './redux/search/action';
+import searchicn from '../assets/images/search-icn2.svg'
+
 const  SearchResults = () => {
   const { searchResults , key,searcherror,Savedkey, loading } = useSelector(state => state.searchReducer);
+  const dispatch = useDispatch();
   useEffect(() => {
+    const local_results = JSON.parse(localStorage.getItem('arada_results'));
+  if(searchResults.length == 0 && local_results){ //when refresh if there is no search results and there is a previous search key in local stroage
+    dispatch(Search(local_results, local_results.searchParameters.q));  //call getSearchResults function to get the search results using key from local storage
+  }
     window.scrollTo(0, 0);
-  }, [searchResults])
+  }, [Savedkey])
   if(searcherror===1){
     return (<div><MinSearchPage/><h1 class="bg-red-600 text-white h-10 text-center">Someting went wrong, Please try again later </h1></div>)
   }
   if(loading===true){
-    return (<img src={loadinganim} alt="loading" className="m-auto mt-28 mb-80" />)
+    return (<img src={loadinganim} alt="loading" className="m-auto mt-28 mb-96" />)
   }
+  
+  
   if (searchResults.length !== 0) {
   return (
     <div className='flex flex-col'>
-      <MinSearchPage/>
+      <div className='bg-slate-100 border-b-4 border-slate-200 ... mb-3'>
+      <MinSearchPage/>   
+      <div className='text-center'>
+        <span title={Savedkey}>
+        <img src={searchicn} className="h-3 m-auto" />
+          Search Results for </span><span className='text-2lx bg-slate-300'>{Savedkey}</span>
+        </div>
+      </div>
       
-      <div className='text-center'><span >Search Results for </span><span className='text-2lx bg-slate-300'>{Savedkey}</span></div>
-      <hr class="my-8 h-px bg-gray-200 border-0 dark:bg-gray-700"/>
          {Object.keys(searchResults.organic).map((results) => (
            <Organic
            key={generate({ charset: alphanumeric, length: 32 })}
@@ -33,7 +47,7 @@ const  SearchResults = () => {
          />
             ))}
             <h3 class="text-4xl text-center m-8">Related searches </h3>
-            <div className='m-auto grid md:grid-cols-3 sm:grid-cols-1   w-3/5 border-4 border-indigo-200 border-x-indigo-500 sm:w-80 md:w-3/4'>
+            <div className='m-auto grid md:grid-cols-3 sm:grid-cols-1  w-3/5 border-4 border-white-200 border-x-orange-200 sm:w-80 md:w-3/5'>
               
       {
       searchResults.relatedSearches ? 

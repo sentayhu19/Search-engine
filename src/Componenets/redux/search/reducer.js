@@ -2,7 +2,7 @@ import { SEARCH, SEARCHERROR, SEARCHLOADING } from "./type";
 
 const initState = {
 searchResults: [],
-Savedkey: '',
+Savedkey: null,
 searcherror: 0,
 loading: false,
 };

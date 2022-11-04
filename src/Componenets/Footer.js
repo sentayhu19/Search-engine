@@ -16,7 +16,7 @@ export default function Footer() {
                 <a href="https://arada-chat.vercel.app/" class="mr-4 hover:underline md:mr-6">Arada Chat</a>
             </li>
             <li>
-                <a href="https://github.com/sentayhu19/Search-engine" class="mr-4 hover:underline md:mr-6 ">GitHub</a>
+                <a href="https://github.com/sentayhu19" class="mr-4 hover:underline md:mr-6 ">GitHub</a>
             </li>
             <li>
                 <a href="#" class="hover:underline">Contact</a>

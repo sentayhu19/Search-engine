@@ -14,7 +14,7 @@ export const getSearchResults =  (key) => async (dispatch) => {
     method: 'post',
     url: 'https://google.serper.dev/search',
     headers: { 
-      'X-API-KEY': "API KEY", 
+      'X-API-KEY': ARADA_KEY, 
       'Content-Type': 'application/json'
     },
     data : data
@@ -23,6 +23,7 @@ export const getSearchResults =  (key) => async (dispatch) => {
   await axios(config)
   .then((response) => {
     console.log("SERVER response", response.data);
+    localStorage.setItem('arada_results', JSON.stringify(response.data));
     dispatch(Search(response.data, key))
   })
   .catch((error) => {
