@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { Search, SearchError } from './action';
 
+require('dotenv').config();
+
 const getSearchResults = (key) => async (dispatch) => {
   if (key !== '' && key !== undefined) {
     const data = JSON.stringify({
@@ -14,7 +16,7 @@ const getSearchResults = (key) => async (dispatch) => {
       method: 'post',
       url: 'https://google.serper.dev/search',
       headers: {
-        'X-API-KEY': ARADA_KEY,
+        'X-API-KEY': process.env.ARADA_KEY,
         'Content-Type': 'application/json',
       },
       data,
