@@ -1,0 +1,19 @@
+
+
+.related{
+    cursor: pointer;
+}
+
+.logo-font{
+    font-family: 'Inter', sans-serif;
+    font-family: 'Libre Bodoni', serif;
+    font-family: 'Permanent Marker', cursive;
+}
+
+.search-box{
+    background: url(../src/assets/images/search-icn2.svg);
+    padding-left: 45px;
+    background-repeat: no-repeat;
+    background-size: 35px;
+    background-position: 2px;
+}
