@@ -4,12 +4,11 @@ import {
   legacy_createStore as createStore,
   applyMiddleware,
 } from 'redux';
-import searchReducer from "./search/reducer";
+import searchReducer from './search/reducer';
 
-
-const rootReducer =combineReducers ({
-    searchReducer
-})
+const rootReducer = combineReducers({
+  searchReducer,
+});
 const initState = {};
 const store = createStore(rootReducer, initState, applyMiddleware(thunk));
 export default store;
