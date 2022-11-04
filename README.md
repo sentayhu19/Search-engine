@@ -4,13 +4,13 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 Arada search  is a website that helps people find the information they are looking for online using keywords or phrases.
 
+<img src="https://raw.githubusercontent.com/sentayhu19/Search-engine/features/src/assets/images/arada-ss.png" alt="arada-ss">
 
 
 
+## Live Link
 
-## Live demo comming soon
-
-[Live Demo Link on Netlify](https://www.aradasearch.netlify.app)
+[Live Link on Netlify](https://www.aradasearch.netlify.app)
 
 ## Built With
 

@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { Search, SearchError } from './action';
-const dotenv = require('dotenv');
+
+require('dotenv').config();
+
 const getSearchResults = (key) => async (dispatch) => {
   if (key !== '' && key !== undefined) {
     const data = JSON.stringify({
