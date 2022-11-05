@@ -14,7 +14,7 @@ export default function Organic({ results }) {
           </a>
           <p className="text-slate-400 sm:w-80 md:w-96">{link}</p>
         </div>
-        <img className="h-20" src={imageUrl} alt="url-img" />
+        {imageUrl ? <img className="h-20" src={imageUrl} alt="url-img" /> : ''}
       </div>
       <p>{snippet}</p>
     </div>
