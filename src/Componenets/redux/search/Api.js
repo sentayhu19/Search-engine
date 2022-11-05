@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { Search, SearchError } from './action';
 
-
 const getSearchResults = (key) => async (dispatch) => {
   if (key !== '' && key !== undefined) {
     const data = JSON.stringify({
@@ -15,7 +14,7 @@ const getSearchResults = (key) => async (dispatch) => {
       method: 'post',
       url: 'https://google.serper.dev/search',
       headers: {
-        'X-API-KEY': "454d5c1b605cbdd34a0634825a748e51e5099ae8",
+        'X-API-KEY': '454d5c1b605cbdd34a0634825a748e51e5099ae8',
         'Content-Type': 'application/json',
       },
       data,
