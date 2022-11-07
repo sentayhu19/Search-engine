@@ -14,7 +14,7 @@ export default function Organic({ results, tab }) {
                 {' '}
                 <h2 className="text-2xl hover:underline">{title}</h2>
               </a>
-              <p className="text-slate-400 sm:w-80 md:w-96">{link}</p>
+              <p className="text-slate-400 sm:w-44  md:w-96">{link.substring(0, 28)}</p>
             </div>
             {imageUrl ? <img className="h-20" src={imageUrl} alt="url-img" /> : ''}
           </div>
@@ -22,9 +22,18 @@ export default function Organic({ results, tab }) {
         </div>
       )
         : (
-          <>
-            {imageUrl ? <a href={link}><img className="h-40 w-52 hover:border-2 border-orange-500" src={imageUrl} alt="url-img" /></a> : ''}
-          </>
+          <div>
+            {imageUrl ? (
+              <a href={link} title={title}>
+                <img className="md:h-48 sm:h-28 md:w-52 sm:w-40  hover:border-2 border-orange-500 m-auto" src={imageUrl} alt="url-img" />
+                <p className="md:w-52 sm:w-20 m-auto">
+                  {title.substring(0, 35)}
+                  ...
+                </p>
+              </a>
+
+            ) : ''}
+          </div>
 
         ) }
     </>

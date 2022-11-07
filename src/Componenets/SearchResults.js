@@ -41,7 +41,7 @@ const SearchResults = () => {
     return (
       <>
 
-        <div className="flex flex-col">
+        <div className="flex flex-col sm:w-100">
           <div className="bg-slate-100 border-b-4 border-slate-200 ... mb-3">
             <MinSearchPage />
             <div className="text-center">
@@ -49,7 +49,10 @@ const SearchResults = () => {
                 <img src={searchicn} alt="search-icon" className="h-3 m-auto" />
                 Search Results for
               </span>
-              <span className="text-2lx bg-slate-300">{Savedkey}</span>
+              <span className="text-2lx bg-slate-300">
+                {' '}
+                {Savedkey}
+              </span>
             </div>
             <div className="flex gap-5 w-20 m-auto pt-5">
               <button type="button" onClick={handletab} className={tab ? 'border-b-4 border-orange-600 ring-offset-2 ' : ''}>All</button>
@@ -68,7 +71,7 @@ const SearchResults = () => {
                   />
                 ))}
                 <h3 className="text-4xl text-center m-8">Related searches </h3>
-                <div className="m-auto grid md:grid-cols-3 sm:grid-cols-1  w-3/5 border-4 border-white-200 border-x-orange-200 sm:w-80 md:w-3/5">
+                <div className="m-auto grid md:grid-cols-3 sm:grid-cols-1 sm:w-72   border-4 border-white-200 border-x-orange-200 sm:w-80 md:w-3/5">
 
                   {
       searchResults.relatedSearches
@@ -84,7 +87,7 @@ const SearchResults = () => {
               </div>
 
             ) : (
-              <div className="flex flex-wrap w-3/4 m-auto gap-2">
+              <div className="grid grid-cols-3 md:w-3/4 m-auto sm:gap-5  sm:w-4/5 mb-80">
                 {Object.keys(searchResults.organic).map((results) => (
                   <Organic
                     key={generate({ charset: alphanumeric, length: 32 })}
