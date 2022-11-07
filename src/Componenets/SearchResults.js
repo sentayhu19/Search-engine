@@ -13,6 +13,7 @@ const SearchResults = () => {
   const {
     searchResults, searcherror, Savedkey, loading,
   } = useSelector((state) => state.searchReducer);
+  const [tab, settab] = React.useState(true);
   const dispatch = useDispatch();
   useEffect(() => {
     const LocalResults = JSON.parse(localStorage.getItem('arada_results'));
@@ -21,6 +22,9 @@ const SearchResults = () => {
     }
     window.scrollTo(0, 0);
   }, [Savedkey]);
+  const handletab = () => {
+    settab(!tab);
+  };
   if (searcherror === 1) {
     return (
       <div>
@@ -35,29 +39,38 @@ const SearchResults = () => {
 
   if (searchResults.length !== 0) {
     return (
-      <div className="flex flex-col">
-        <div className="bg-slate-100 border-b-4 border-slate-200 ... mb-3">
-          <MinSearchPage />
-          <div className="text-center">
-            <span title={Savedkey}>
-              <img src={searchicn} alt="search-icon" className="h-3 m-auto" />
-              Search Results for
-            </span>
-            <span className="text-2lx bg-slate-300">{Savedkey}</span>
+      <>
+
+        <div className="flex flex-col">
+          <div className="bg-slate-100 border-b-4 border-slate-200 ... mb-3">
+            <MinSearchPage />
+            <div className="text-center">
+              <span title={Savedkey}>
+                <img src={searchicn} alt="search-icon" className="h-3 m-auto" />
+                Search Results for
+              </span>
+              <span className="text-2lx bg-slate-300">{Savedkey}</span>
+            </div>
+            <div className="flex gap-5 w-20 m-auto pt-5">
+              <button type="button" onClick={handletab} className={tab ? 'border-b border-orange-600' : ''}>All</button>
+              <button type="button" onClick={handletab} className={tab ? '' : 'border-b border-orange-600'}>Images</button>
+            </div>
           </div>
-        </div>
+          {tab
+            ? (
+              <div>
+                {Object.keys(searchResults.organic).map((results) => (
+                  <Organic
+                    key={generate({ charset: alphanumeric, length: 32 })}
+                    ID={results}
+                    results={searchResults.organic[results]}
+                    tab={tab}
+                  />
+                ))}
+                <h3 className="text-4xl text-center m-8">Related searches </h3>
+                <div className="m-auto grid md:grid-cols-3 sm:grid-cols-1  w-3/5 border-4 border-white-200 border-x-orange-200 sm:w-80 md:w-3/5">
 
-        {Object.keys(searchResults.organic).map((results) => (
-          <Organic
-            key={generate({ charset: alphanumeric, length: 32 })}
-            ID={results}
-            results={searchResults.organic[results]}
-          />
-        ))}
-        <h3 className="text-4xl text-center m-8">Related searches </h3>
-        <div className="m-auto grid md:grid-cols-3 sm:grid-cols-1  w-3/5 border-4 border-white-200 border-x-orange-200 sm:w-80 md:w-3/5">
-
-          {
+                  {
       searchResults.relatedSearches
         ? Object.keys(searchResults.relatedSearches).map((related) => (
           <Related
@@ -67,11 +80,27 @@ const SearchResults = () => {
           />
         )) : ''
             }
+                </div>
+              </div>
+
+            ) : (
+              <div className="flex flex-wrap w-3/4 m-auto gap-2">
+                {Object.keys(searchResults.organic).map((results) => (
+                  <Organic
+                    key={generate({ charset: alphanumeric, length: 32 })}
+                    ID={results}
+                    results={searchResults.organic[results]}
+                    tab={tab}
+                  />
+                ))}
+              </div>
+            )}
+          {' '}
+
         </div>
-      </div>
+      </>
     );
   }
-
   return (
     <div className="mb-96"><MinSearchPage /></div>
   );

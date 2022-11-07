@@ -36,7 +36,6 @@ const SearchPage = () => {
         <input type="text" name="key" required value={key} onChange={handleOnChange} onKeyUp={handleSubmit} className="search-box border-double border-4 border-sky-500 rounded-lg w-3/5 h-12 m-auto" placeholder="Search" />
         <button type="submit" className="hover:bg-indigo-600 hover:text-white border-solid border-2 border-sky-500 button mt-5 m-auto w-40 rounded-lg">Search</button>
       </form>
-
     </div>
   );
 };
