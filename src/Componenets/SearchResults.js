@@ -52,8 +52,8 @@ const SearchResults = () => {
               <span className="text-2lx bg-slate-300">{Savedkey}</span>
             </div>
             <div className="flex gap-5 w-20 m-auto pt-5">
-              <button type="button" onClick={handletab} className={tab ? 'border-b border-orange-600' : ''}>All</button>
-              <button type="button" onClick={handletab} className={tab ? '' : 'border-b border-orange-600'}>Images</button>
+              <button type="button" onClick={handletab} className={tab ? 'border-b-4 border-orange-600 ring-offset-2 ' : ''}>All</button>
+              <button type="button" onClick={handletab} className={tab ? '' : 'border-b-4 border-orange-600'}>Images</button>
             </div>
           </div>
           {tab
