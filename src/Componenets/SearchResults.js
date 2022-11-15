@@ -6,7 +6,7 @@ import Organic from './Organic';
 import MinSearchPage from './MinSearchPage';
 import Related from './Related';
 import loadinganim from '../assets/images/loading.gif';
-import { Search, SearchLoading } from './redux/search/action';
+import { Search, SearchLoading, SearchImage } from './redux/search/action';
 import getSearchResults from './redux/search/Api';
 import searchicn from '../assets/images/search-icn2.svg';
 import imagesicn from '../assets/images/images.svg';
@@ -29,8 +29,13 @@ const SearchResults = () => {
     dispatch(SearchLoading(true));
     if (true) {
       const LocalImageResults = JSON.parse(localStorage.getItem('arada_image'));
-      dispatch(SearchLoading(true));
-      dispatch(getSearchResults(Savedkey, 'image'));
+      if (LocalImageResults.searchParameters.q !== Savedkey) {
+        dispatch(SearchLoading(true));
+        dispatch(getSearchResults(Savedkey, 'image'));
+      } else {
+        console.log('same key ******************************************');
+        dispatch(SearchImage(LocalImageResults, Savedkey));
+      }
     }
   };
   if (searcherror === 1) {
@@ -50,7 +55,7 @@ const SearchResults = () => {
     return (
       <>
 
-        <div className="flex flex-col sm:w-100">
+        <div className="flex flex-col sm:w-100 bg-slate-100 ">
           <div className="bg-slate-100 border-b-4 border-slate-200 ... mb-3">
             <MinSearchPage />
             <div className="text-center">
@@ -63,17 +68,17 @@ const SearchResults = () => {
                 {Savedkey}
               </span>
             </div>
-            <div className="flex gap-6 w-24 m-auto pt-5">
+            <div className="flex gap-8 w-24 m-auto pt-5">
               <button type="button" onClick={handletab} className={tab ? 'border-b-4 border-orange-600 ring-offset-2 ' : ''}>
                 <div className="flex justify-center text-center items-center gap-1">
-                  <img className=" h-4 w-5" src={searchicn} />
-                  <p>All</p>
+                  <img className=" h-4 w-5" src={searchicn} alt="search icon" />
+                  <p title="All search results">All</p>
                 </div>
               </button>
               <button type="button" onClick={handletab} className={tab ? '' : 'border-b-4 border-orange-600'}>
                 <div className="flex justify-center text-center items-center gap-1">
-                  <img className=" h-4 w-5" src={imagesicn} />
-                  <p>Images</p>
+                  <img className=" h-4 w-5" src={imagesicn} alt="search icon" />
+                  <p className="Images search results">Images</p>
                 </div>
               </button>
             </div>
@@ -108,7 +113,7 @@ const SearchResults = () => {
 
             ) : (
 
-              <div className="grid grid-cols-3 md:w-3/4 m-auto sm:gap-5  sm:w-4/5 mb-80">
+              <div className="grid grid-cols-3 md:w-3/4 m-auto sm:gap-7  sm:w-4/5 mb-80">
                 {imageresults.images ? Object.keys(imageresults.images).map((images) => (
                   <Organic
                     key={generate({ charset: alphanumeric, length: 32 })}

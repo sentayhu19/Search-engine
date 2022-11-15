@@ -31,7 +31,6 @@ const searchReducer = (state = initState, action) => {
         loading: true,
       };
     case SEARCHIMAGE:
-      console.log('Image search started with SErver RES: ', action.payload);
       return {
         ...state,
         imageresults: action.payload,

@@ -28,7 +28,6 @@ const getSearchResults = (key, type) => async (dispatch) => {
           SearchError(error);
         });
     } else {
-      console.log('---  Redux API know its image  search');
       const config = {
         method: 'post',
         url: 'https://google.serper.dev/images',

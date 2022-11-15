@@ -2,7 +2,6 @@ import React from 'react';
 
 export default function Organic({ results, tab }) {
   if (results) {
-    console.log('Organic results: ', results);
     const {
       title, link, snippet, imageUrl, domain,
     } = results;
@@ -28,11 +27,11 @@ export default function Organic({ results, tab }) {
               {imageUrl ? (
                 <a href={link} title={title}>
                   <img className="md:h-48 sm:h-28 md:w-52 sm:w-40  hover:border-2 border-orange-500 m-auto" src={imageUrl} alt="url-img" />
-                  <p className="md:w-52 sm:w-20 m-auto">
-                    {title.substring(0, 35)}
+                  <p className="md:w-52 sm:w-16 m-auto">
+                    {title.substring(0, 13)}
                     ...
                   </p>
-                  <p className="md:w-52 sm:w-20 m-auto">{domain}</p>
+                  <p className="md:w-52 sm:w-20 m-auto">{domain.substring(0, 15)}</p>
                 </a>
 
               ) : ''}
