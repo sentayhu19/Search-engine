@@ -1,8 +1,10 @@
 import React from 'react';
 
 export default function Organic({ results, tab }) {
+  if(results){
+  console.log('Organic results: ', results);
   const {
-    title, link, snippet, imageUrl,
+    title, link, snippet, imageUrl, domain,
   } = results;
   return (
     <>
@@ -30,6 +32,7 @@ export default function Organic({ results, tab }) {
                   {title.substring(0, 35)}
                   ...
                 </p>
+                <p className="md:w-52 sm:w-20 m-auto">{domain}</p>
               </a>
 
             ) : ''}
@@ -38,4 +41,6 @@ export default function Organic({ results, tab }) {
         ) }
     </>
   );
+            }
+            return '';
 }

@@ -20,7 +20,7 @@ const MinSearchPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (e.key === 'Enter' || e.target.id === 'search-form') {
-      dispatch(getSearchResults(key));
+      dispatch(getSearchResults(key, 'web'));
       navigate('/searchresults');
       dispatch(SearchLoading());
     }

@@ -18,8 +18,8 @@ const SearchPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (e.key === 'Enter' || e.target.id === 'search-form') {
-      dispatch(getSearchResults(key));
       dispatch(SearchLoading());
+      dispatch(getSearchResults(key, 'web'));
       navigate('/searchresults');
     }
     // cons

@@ -6,12 +6,13 @@ import Organic from './Organic';
 import MinSearchPage from './MinSearchPage';
 import Related from './Related';
 import loadinganim from '../assets/images/loading.gif';
-import { Search } from './redux/search/action';
+import { Search, SearchLoading } from './redux/search/action';
+import getSearchResults from './redux/search/Api';
 import searchicn from '../assets/images/search-icn2.svg';
 
 const SearchResults = () => {
   const {
-    searchResults, searcherror, Savedkey, loading,
+    searchResults, searcherror, Savedkey, loading, imageresults,
   } = useSelector((state) => state.searchReducer);
   const [tab, settab] = React.useState(true);
   const dispatch = useDispatch();
@@ -24,6 +25,12 @@ const SearchResults = () => {
   }, [Savedkey]);
   const handletab = () => {
     settab(!tab);
+    dispatch(SearchLoading(true));
+    if (true) {
+      const LocalImageResults = JSON.parse(localStorage.getItem('arada_image'));
+      dispatch(SearchLoading(true));
+      dispatch(getSearchResults(Savedkey, 'image'));
+    }
   };
   if (searcherror === 1) {
     return (
@@ -34,6 +41,7 @@ const SearchResults = () => {
     );
   }
   if (loading === true) {
+    <MinSearchPage />
     return (<img src={loadinganim} alt="loading" className="m-auto mt-28 mb-96" />);
   }
 
@@ -76,26 +84,30 @@ const SearchResults = () => {
                   {
       searchResults.relatedSearches
         ? Object.keys(searchResults.relatedSearches).map((related) => (
+          
           <Related
             key={generate({ charset: alphanumeric, length: 32 })}
             ID={related}
             related={searchResults.relatedSearches[related]}
           />
-        )) : ''
+        )
+        ) : ''
             }
                 </div>
               </div>
 
             ) : (
+
               <div className="grid grid-cols-3 md:w-3/4 m-auto sm:gap-5  sm:w-4/5 mb-80">
-                {Object.keys(searchResults.organic).map((results) => (
+                {imageresults.images ? Object.keys(imageresults.images).map((images) => (
                   <Organic
                     key={generate({ charset: alphanumeric, length: 32 })}
-                    ID={results}
-                    results={searchResults.organic[results]}
+                    ID={images}
+                    results={imageresults.images[images]}
                     tab={tab}
                   />
-                ))}
+                ))
+                  : ''}
               </div>
             )}
           {' '}

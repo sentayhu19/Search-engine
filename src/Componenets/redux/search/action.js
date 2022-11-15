@@ -1,4 +1,6 @@
-import { SEARCH, SEARCHERROR, SEARCHLOADING } from './type';
+import {
+  SEARCH, SEARCHERROR, SEARCHLOADING, SEARCHIMAGE,
+} from './type';
 
 export const Search = (payload, key) => ({
   type: SEARCH,
@@ -13,4 +15,10 @@ export const SearchError = (payload) => ({
 
 export const SearchLoading = () => ({
   type: SEARCHLOADING,
+});
+
+export const SearchImage = (payload, key) => ({
+  type: SEARCHIMAGE,
+  payload,
+  key,
 });

@@ -1,10 +1,13 @@
-import { SEARCH, SEARCHERROR, SEARCHLOADING } from './type';
+import {
+  SEARCH, SEARCHERROR, SEARCHLOADING, SEARCHIMAGE,
+} from './type';
 
 const initState = {
   searchResults: [],
   Savedkey: null,
   searcherror: 0,
   loading: false,
+  imageresults: [],
 };
 
 const searchReducer = (state = initState, action) => {
@@ -26,6 +29,14 @@ const searchReducer = (state = initState, action) => {
       return {
         ...state,
         loading: true,
+      };
+    case SEARCHIMAGE:
+      console.log('Image search started with SErver RES: ', action.payload);
+      return {
+        ...state,
+        imageresults: action.payload,
+        Savedkey: action.key,
+        loading: false,
       };
     default:
       return state;

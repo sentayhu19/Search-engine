@@ -7,7 +7,7 @@ export default function Related({ related }) {
   const dispatch = useDispatch();
   const { query } = related;
   const handleClick = (e) => {
-    dispatch(getSearchResults(e.target.id));
+    dispatch(getSearchResults(e.target.id, 'web'));
   };
   return (
     <div className="m-auto flex  bg-slate-400 rounded-lg m-2 hover:bg-slate-300">
