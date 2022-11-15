@@ -9,6 +9,7 @@ import loadinganim from '../assets/images/loading.gif';
 import { Search, SearchLoading } from './redux/search/action';
 import getSearchResults from './redux/search/Api';
 import searchicn from '../assets/images/search-icn2.svg';
+import imagesicn from '../assets/images/images.svg';
 
 const SearchResults = () => {
   const {
@@ -41,7 +42,7 @@ const SearchResults = () => {
     );
   }
   if (loading === true) {
-    <MinSearchPage />
+    <MinSearchPage />;
     return (<img src={loadinganim} alt="loading" className="m-auto mt-28 mb-96" />);
   }
 
@@ -62,9 +63,19 @@ const SearchResults = () => {
                 {Savedkey}
               </span>
             </div>
-            <div className="flex gap-5 w-20 m-auto pt-5">
-              <button type="button" onClick={handletab} className={tab ? 'border-b-4 border-orange-600 ring-offset-2 ' : ''}>All</button>
-              <button type="button" onClick={handletab} className={tab ? '' : 'border-b-4 border-orange-600'}>Images</button>
+            <div className="flex gap-6 w-24 m-auto pt-5">
+              <button type="button" onClick={handletab} className={tab ? 'border-b-4 border-orange-600 ring-offset-2 ' : ''}>
+                <div className="flex justify-center text-center items-center gap-1">
+                  <img className=" h-4 w-5" src={searchicn} />
+                  <p>All</p>
+                </div>
+              </button>
+              <button type="button" onClick={handletab} className={tab ? '' : 'border-b-4 border-orange-600'}>
+                <div className="flex justify-center text-center items-center gap-1">
+                  <img className=" h-4 w-5" src={imagesicn} />
+                  <p>Images</p>
+                </div>
+              </button>
             </div>
           </div>
           {tab
@@ -84,14 +95,13 @@ const SearchResults = () => {
                   {
       searchResults.relatedSearches
         ? Object.keys(searchResults.relatedSearches).map((related) => (
-          
+
           <Related
             key={generate({ charset: alphanumeric, length: 32 })}
             ID={related}
             related={searchResults.relatedSearches[related]}
           />
-        )
-        ) : ''
+        )) : ''
             }
                 </div>
               </div>
