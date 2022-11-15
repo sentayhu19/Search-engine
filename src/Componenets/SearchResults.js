@@ -33,7 +33,6 @@ const SearchResults = () => {
         dispatch(SearchLoading(true));
         dispatch(getSearchResults(Savedkey, 'image'));
       } else {
-        console.log('same key ******************************************');
         dispatch(SearchImage(LocalImageResults, Savedkey));
       }
     }
