@@ -29,12 +29,17 @@ const SearchResults = () => {
     dispatch(SearchLoading(true));
     if (true) {
       const LocalImageResults = JSON.parse(localStorage.getItem('arada_image'));
+      if(LocalImageResults){
       if (LocalImageResults.searchParameters.q !== Savedkey) {
         dispatch(SearchLoading(true));
         dispatch(getSearchResults(Savedkey, 'image'));
       } else {
         dispatch(SearchImage(LocalImageResults, Savedkey));
       }
+    }else{
+      dispatch(SearchLoading(true));
+      dispatch(getSearchResults(Savedkey, 'image'));
+    }
     }
   };
   if (searcherror === 1) {
